@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MISTEL.STORE | ARCHIVE & DARKWEAR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0A0A0A;
+      --paper-cream: #e6e3da;
+      --paper-card: #141414;
+      --text-main: #FFFFFF;
+      --text-dark: #0f0f11;
+      --accent: #FFFFFF;
+      --silver: #8a9096;
+      --plaster: rgba(225, 215, 190, 0.85);
+      --plaster-border: #c8bda4;
+      --shadow-color: rgba(0,0,0,0.9);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --bundle-bg: #e6e3da;
+      --bundle-text: #0f0f11;
+      --bundle-card-bg: #ffffff;
+      --bundle-card-border: #000000;
+    }
+
+    [data-theme="light"] {
+      --bg-dark: #e8e4d9;
+      --text-main: #0f0f11;
+      --paper-card: #f2efe6;
+      --silver: #4a4d50;
+      --shadow-color: rgba(0,0,0,0.15);
+      --card-border: rgba(0, 0, 0, 0.15);
+      --bundle-bg: #121518;
+      --bundle-text: #e6e3da;
+      --bundle-card-bg: #1a1e24;
+      --bundle-card-border: #e6e3da;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      background-image: 
+        linear-gradient(to bottom, rgba(10,10,10,0.85), rgba(10,10,10,0.96)),
+        url('https://images.unsplash.com/photo-1509114397022-ed747cca3f65?q=80&w=1600&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    /* Рвані краї паперу */
+    .torn-bottom {
+      clip-path: polygon(
+        0% 0%, 100% 0%, 100% calc(100% - 18px),
+        97% 100%, 92% calc(100% - 12px), 88% 100%, 82% calc(100% - 20px),
+        77% calc(100% - 6px), 71% 100%, 65% calc(100% - 14px), 60% 100%,
+        54% calc(100% - 8px), 49% 100%, 43% calc(100% - 16px), 38% 100%,
+        31% calc(100% - 10px), 25% 100%, 18% calc(100% - 18px), 12% 100%,
+        6% calc(100% - 8px), 0% calc(100% - 15px)
+      );
+    }
+
+    .torn-top {
+      clip-path: polygon(
+        0% 15px, 5% 0%, 11% 14px, 17% 2px, 23% 16px, 29% 4px,
+        36% 18px, 42% 1px, 48% 15px, 55% 3px, 62% 19px, 68% 5px,
+        75% 17px, 81% 2px, 88% 16px, 94% 4px, 100% 18px,
+        100% 100%, 0% 100%
+      );
+    }
+
+    /* Штучний шум/зернистість (Noise overlay) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=400&auto=format&fit=crop');
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Шапка сайту */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    [data-theme="light"] header {
+      background: rgba(232, 228, 217, 0.9);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .logo-sword {
+      width: 16px;
+      height: 38px;
+      background: var(--text-main);
+      position: relative;
+    }
+    .logo-sword::before {
+      content: '';
+      position: absolute;
+      top: 6px; left: -6px; right: -6px;
+      height: 2px;
+      background: var(--text-main);
+    }
+
+    .logo-text {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: 16px;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .logo-text span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      opacity: 0.7;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 0.6; }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .action-btn {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      padding: 8px 14px;
+      font-weight: 900;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .action-btn:hover {
+      background: var(--text-main);
+      color: var(--bg-dark);
+    }
+
+    /* Гамбургер для моб. версії */
+    .burger-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Mobile Menu Drawer */
+    .mobile-menu {
+      position: fixed;
+      top: 0; left: -100%; width: 100%; height: 100vh;
+      background: var(--bg-dark);
+      z-index: 250;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      transition: left 0.4s ease;
+    }
+    .mobile-menu.open { left: 0; }
+    .mobile-menu a {
+      font-size: 20px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    /* Ticker / Promobar */
+    .ticker-container {
+      background: #000;
+      color: #fff;
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .ticker-content {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 75vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: clamp(50px, 12vw, 120px);
+      line-height: 0.95;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 13px;
+      letter-spacing: 4px;
+      font-weight: 900;
+      opacity: 0.7;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-main {
+      background: var(--text-main);
+      color: var(--bg-dark);
+      padding: 14px 28px;
+      font-weight: 900;
+      font-size: 13px;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 4px 4px 0px rgba(255,255,255,0.2);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      padding: 14px 28px;
+      font-weight: 900;
+      font-size: 13px;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+    }
+
+    /* Каталог & Фільтри */
+    .catalog-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .filters-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .filter-tab {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      padding: 10px 18px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+    .filter-tab.active, .filter-tab:hover {
+      background: var(--text-main);
+      color: var(--bg-dark);
+    }
+
+    /* Товари */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .product-card {
+      background: var(--paper-card);
+      border: 1px solid var(--card-border);
+      padding: 16px;
+      position: relative;
+      box-shadow: 0 10px 30px var(--shadow-color);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+    }
+    .product-img-box {
+      width: 100%;
+      aspect-ratio: 4/5;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+      background: #000;
+    }
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      transition: opacity 0.3s ease;
+    }
+    .product-img.hover-img { opacity: 0; }
+    .product-card:hover .product-img.hover-img { opacity: 1; }
+    
+    .status-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: #000;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 4px 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      z-index: 5;
+    }
+    .status-badge.preorder { background: #333; color: #aaa; }
+
+    .product-title {
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .product-price {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--silver);
+      margin-bottom: 12px;
+    }
+    .sizes-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .size-pill {
+      border: 1px solid var(--card-border);
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .size-pill.selected {
+      background: var(--text-main);
+      color: var(--bg-dark);
+    }
+
+    /* Блок Комплектів */
+    .bundle-section {
+      background-color: var(--bundle-bg);
+      color: var(--bundle-text);
+      padding: 50px 20px;
+      margin: 60px 10px;
+      text-align: center;
+    }
+    .bundle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 900px;
+      margin: 30px auto 0;
+    }
+    .bundle-card {
+      background: var(--bundle-card-bg);
+      border: 2px solid var(--bundle-card-border);
+      color: var(--bundle-text);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 4px 4px 0px var(--bundle-card-border);
+    }
+
+    /* Telegram Banner */
+    .tg-banner {
+      max-width: 900px;
+      margin: 60px auto;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Рулетка-кейс */
+    .case-section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .case-box {
+      background: var(--paper-card);
+      border: 1px solid var(--card-border);
+      padding: 40px;
+      box-shadow: 0 15px 35px var(--shadow-color);
+    }
+    .wheel-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 350;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .wheel-modal.active { display: flex; }
+    .wheel-box {
+      background: var(--paper-cream);
+      color: var(--text-dark);
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+    .wheel-wrapper {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      margin: 20px auto;
+    }
+    #wheelCanvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid #000;
+      transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1);
+    }
+    .wheel-pointer {
+      position: absolute;
+      top: -12px; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 22px solid #000;
+      z-index: 10;
+    }
+
+    /* Футер */
+    footer {
+      background: #050505;
+      color: #888;
+      padding: 60px 20px 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 80px;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      color: #888;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 10px;
+      background: #111;
+      border: 1px solid #333;
+      color: #fff;
+      font-size: 12px;
+    }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    /* Висувний кошик */
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh;
+      background: var(--paper-card);
+      color: var(--text-main);
+      z-index: 300;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.4s ease;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.9);
+      border-left: 1px solid var(--card-border);
+    }
+    .cart-drawer.open { right: 0; }
+
+    @media(max-width: 768px) {
+      .nav-links { display: none; }
+      .burger-btn { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка сайту -->
+  <header>
+    <a href="#" class="logo-container">
+      <div class="logo-sword"></div>
+      <div class="logo-text">
+        MISTEL
+        <span>STORE</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#catalog">Магазин</a>
+      <a href="#catalog" onclick="filterCatalog('instock', event)">В Наличии</a>
+      <a href="#catalog" onclick="filterCatalog('preorder', event)">Предзаказ</a>
+    </nav>
+    <div class="header-actions">
+      <button class="action-btn" onclick="toggleTheme()">ТЕМА 🌗</button>
+      <button class="action-btn" onclick="toggleCart()">КОШИК (<span id="cart-count">0</span>)</button>
+      <button class="burger-btn" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#catalog" onclick="toggleMobileMenu()">Магазин</a>
+    <a href="#catalog" onclick="filterCatalog('instock'); toggleMobileMenu()">В Наличии</a>
+    <a href="#catalog" onclick="filterCatalog('preorder'); toggleMobileMenu()">Предзаказ</a>
+    <button class="action-btn" onclick="toggleMobileMenu()" style="margin-top: 20px;">ЗАКРИТИ</button>
+  </div>
+
+  <!-- Ticker Bar -->
+  <div class="ticker-container">
+    <div class="ticker-content">
+      MISTEL.STORE /// EXCLUSIVE ARCHIVE & DARKWEAR /// БЕСПЛАТНАЯ ДОСТАВКА ОТ 5000 ГРН /// 
+      MISTEL.STORE /// EXCLUSIVE ARCHIVE & DARKWEAR /// БЕСПЛАТНАЯ ДОСТАВКА ОТ 5000 ГРН ///
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>MISTEL ARCHIVE</h1>
+    <p>Exclusive Darkwear & Designer Selection</p>
+    <div class="hero-cta">
+      <a href="#catalog" class="btn-main">СМОТРЕТЬ ДРОП</a>
+      <a href="#catalog" onclick="filterCatalog('instock')" class="btn-outline">В НАЛИЧИИ</a>
+    </div>
+  </section>
+
+  <!-- Каталог товаров -->
+  <section class="catalog-section" id="catalog">
+    <div class="filters-bar">
+      <button class="filter-tab active" onclick="filterCatalog('all', this)">Все вещи</button>
+      <button class="filter-tab" onclick="filterCatalog('instock', this)">В наличии (1-2 дня)</button>
+      <button class="filter-tab" onclick="filterCatalog('preorder', this)">Под заказ (10-14 дней)</button>
+      <button class="filter-tab" onclick="filterCatalog('shoes', this)">Обувь</button>
+      <button class="filter-tab" onclick="filterCatalog('top', this)">Верх</button>
+      <button class="filter-tab" onclick="filterCatalog('pants', this)">Штаны</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+      <!-- Товар 1 -->
+      <div class="product-card" data-cat="pants instock top">
+        <div class="status-badge">IN STOCK</div>
+        <div class="product-img-box">
+          <img class="product-img" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600&auto=format&fit=crop" alt="Bela Pants front">
+          <img class="product-img hover-img" src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=600&auto=format&fit=crop" alt="Bela Pants back">
+        </div>
+        <div class="product-title">Rick Owens Bela Pants</div>
+        <div class="product-price">14 500 грн</div>
+        <div class="sizes-row">
+          <span class="size-pill" onclick="selectSize(this)">S</span>
+          <span class="size-pill" onclick="selectSize(this)">M</span>
+          <span class="size-pill" onclick="selectSize(this)">L</span>
+        </div>
+        <button class="btn-main" style="width:100%; padding:10px; font-size:11px;" onclick="addToCart('Rick Owens Bela Pants', 14500)">В кошик</button>
+      </div>
+
+      <!-- Товар 2 -->
+      <div class="product-card" data-cat="top preorder shoes">
+        <div class="status-badge preorder">PRE-ORDER</div>
+        <div class="product-img-box">
+          <img class="product-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format&fit=crop" alt="Geobasket front">
+          <img class="product-img hover-img" src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600&auto=format&fit=crop" alt="Geobasket details">
+        </div>
+        <div class="product-title">Rick Owens Geobasket High</div>
+        <div class="product-price">22 000 грн</div>
+        <div class="sizes-row">
+          <span class="size-pill" onclick="selectSize(this)">42 EU</span>
+          <span class="size-pill" onclick="selectSize(this)">43 EU</span>
+          <span class="size-pill" onclick="selectSize(this)">44 EU</span>
+        </div>
+        <button class="btn-main" style="width:100%; padding:10px; font-size:11px;" onclick="addToCart('Rick Owens Geobasket High', 22000)">В кошик</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Маркетингові блоки: Комплекти -->
+  <section class="bundle-section torn-top torn-bottom">
+    <h2 style="font-size: 28px; font-weight: 900; text-transform: uppercase;">Система Комплектів</h2>
+    <p style="font-size: 13px; opacity: 0.8; margin-top: 6px;">Більше речей у замовленні — вища знижка:</p>
+    <div class="bundle-grid">
+      <div class="bundle-card">
+        <div style="font-size: 32px; font-weight: 900;">3 речі</div>
+        <div style="background:#000; color:#fff; font-weight:900; padding:6px; margin-top:10px;">СКІДКА 5%</div>
+      </div>
+      <div class="bundle-card">
+        <div style="font-size: 32px; font-weight: 900;">4 речі</div>
+        <div style="background:#000; color:#fff; font-weight:900; padding:6px; margin-top:10px;">СКІДКА 8%</div>
+      </div>
+      <div class="bundle-card">
+        <div style="font-size: 32px; font-weight: 900;">5+ речей</div>
+        <div style="background:#000; color:#fff; font-weight:900; padding:6px; margin-top:10px;">СКІДКА 10%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Telegram Banner -->
+  <div class="tg-banner">
+    <h3 style="font-size: 22px; font-weight: 900; text-transform: uppercase;">ОТРИМАЙ ПРОМОКОД У TELEGRAM</h3>
+    <p style="font-size: 13px; opacity: 0.7; margin: 10px 0 20px;">Переходь в нашого Telegram-бота, щоб забрати персональну знижку.</p>
+    <a href="https://t.me" target="_blank" class="btn-main">ПЕРЕЙТИ В TELEGRAM-БОТ</a>
+  </div>
+
+  <!-- Рулетка-кейс -->
+  <section class="case-section">
+    <div class="case-box">
+      <h3 style="font-size: 22px; font-weight: 900; text-transform: uppercase;">Щоденний кейс знижок</h3>
+      <p style="font-size: 12px; opacity: 0.7; margin: 8px 0 20px;">Крути рулетку та вигравай безкоштовну доставку або промокоди!</p>
+      <button class="btn-main" onclick="openWheelModal()">ВІДКРИТИ КЕЙС 🎰</button>
+    </div>
+  </section>
+
+  <!-- Модалка рулетки -->
+  <div class="wheel-modal" id="wheelModal">
+    <div class="wheel-box torn-bottom">
+      <h3 style="font-size: 20px; font-weight: 900;">РУЛЕТКА MISTEL</h3>
+      <div class="wheel-wrapper">
+        <div class="wheel-pointer"></div>
+        <canvas id="wheelCanvas" width="260" height="260"></canvas>
+      </div>
+      <button class="btn-main" id="spinBtn" onclick="spinWheel()" style="width:100%; padding:10px; font-size:12px;">КРУТИТИ</button>
+      <div id="wheelResult" style="margin-top:10px; font-weight:900; font-size:14px; display:none;"></div>
+      <button onclick="closeWheelModal()" style="background:none; border:none; text-decoration:underline; font-weight:900; font-size:11px; margin-top:14px; cursor:pointer;">Закрити</button>
+    </div>
+  </div>
+
+  <!-- Футер -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="#catalog">Магазин</a></li>
+          <li><a href="#catalog">В наличии</a></li>
+          <li><a href="#catalog">Предзаказ</a></li>
+          <li><a href="#">Отзывы Telegram</a></li>
+          <li><a href="#">О бренде MISTEL</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Клиентам</h4>
+        <ul>
+          <li><a href="#">Таблица замеров</a></li>
+          <li><a href="#">Доставка и оплата</a></li>
+          <li><a href="#">Отследить заказ</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Закрытые дропы</h4>
+        <p style="font-size:12px; opacity:0.7;">Оформи подписку на закрытые дропы и ранний доступ к архиву.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Ваш Email">
+          <button class="btn-main" style="padding:10px; font-size:11px;">OK</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 MISTEL.STORE. ARCHIVE SELECTION.</div>
+      <div style="display:flex; gap:16px;">
+        <a href="#" style="color:#fff; text-decoration:none; font-weight:900;">TELEGRAM</a>
+        <a href="#" style="color:#fff; text-decoration:none; font-weight:900;">INSTAGRAM</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Висувний кошик -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <h3 style="font-size:20px; font-weight:900;">ТВІЙ КОШИК</h3>
+      <button onclick="toggleCart()" style="background:none; border:none; color:inherit; font-size:24px; cursor:pointer;">&times;</button>
+    </div>
+    <div id="cartItems" style="flex:1; overflow-y:auto;">
+      <p style="opacity:0.5; text-align:center; margin-top:40px;">Кошик порожній</p>
+    </div>
+    <div style="border-top: 1px solid var(--card-border); padding-top: 16px;">
+      <div style="display:flex; justify-content:space-between; font-weight:900; font-size:16px; margin-bottom:14px;">
+        <span>РАЗОМ:</span>
+        <span id="cartTotal">0 грн</span>
+      </div>
+      <button class="btn-main" style="width:100%; padding:14px;" onclick="alert('Замовлення оформлено!')">ОФОРМИТИ ЗАМОВЛЕННЯ</button>
+    </div>
+  </div>
+
+  <script>
+    // Зміна теми
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    }
+
+    // Мобільне меню
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    // Фільтрація каталогу
+    function filterCatalog(category) {
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const cats = card.getAttribute('data-cat');
+        if (category === 'all' || cats.includes(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Вибір розміру
+    function selectSize(el) {
+      const parent = el.parentElement;
+      parent.querySelectorAll('.size-pill').forEach(p => p.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    // Кошик
+    let cart = [];
+    function toggleCart() {
+      document.getElementById('cartDrawer').classList.toggle('open');
+    }
+    function addToCart(title, price) {
+      cart.push({ title, price });
+      updateCart();
+      toggleCart();
+    }
+    function updateCart() {
+      const container = document.getElementById('cartItems');
+      document.getElementById('cart-count').innerText = cart.length;
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="opacity:0.5; text-align:center; margin-top:40px;">Кошик порожній</p>';
+        document.getElementById('cartTotal').innerText = '0 грн';
+        return;
+      }
+      let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+      let discount = cart.length >= 5 ? 0.10 : (cart.length === 4 ? 0.08 : (cart.length === 3 ? 0.05 : 0));
+      let total = subtotal * (1 - discount);
+
+      container.innerHTML = cart.map((item, idx) => `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1);">
+          <div>
+            <div style="font-weight:900; font-size:13px;">${item.title}</div>
+            <div style="font-size:11px; opacity:0.7;">${item.price} грн</div>
+          </div>
+          <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-weight:900;">✕</button>
+        </div>
+      `).join('');
+      document.getElementById('cartTotal').innerText = `${Math.round(total)} грн ${discount > 0 ? `(-${discount*100}%)` : ''}`;
+    }
+    function removeFromCart(idx) {
+      cart.splice(idx, 1);
+      updateCart();
+    }
+
+    // Рулетка
+    const sectors = [
+      { label: "Доставка 0 грн", color: "#111", text: "#fff" },
+      { label: "Знижка 5%", color: "#e6e3da", text: "#000" },
+      { label: "Знижка 10%", color: "#222", text: "#fff" },
+      { label: "Стікерпак", color: "#ccc", text: "#000" },
+      { label: "Знижка 15%", color: "#000", text: "#fff" }
+    ];
+    let currentRot = 0;
+    let spinning = false;
+
+    function drawWheel() {
+      const canvas = document.getElementById('wheelCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const arc = (2 * Math.PI) / sectors.length;
+      const rad = canvas.width / 2;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      sectors.forEach((s, i) => {
+        const angle = i * arc;
+        ctx.beginPath();
+        ctx.fillStyle = s.color;
+        ctx.moveTo(rad, rad);
+        ctx.arc(rad, rad, rad, angle, angle + arc);
+        ctx.lineTo(rad, rad);
+        ctx.fill();
+        ctx.save();
+        ctx.translate(rad, rad);
+        ctx.rotate(angle + arc / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = s.text;
+        ctx.font = "bold 11px Inter";
+        ctx.fillText(s.label, rad - 12, 4);
+        ctx.restore();
+      });
+    }
+    function openWheelModal() {
+      document.getElementById('wheelModal').classList.add('active');
+      drawWheel();
+    }
+    function closeWheelModal() {
+      document.getElementById('wheelModal').classList.remove('active');
+    }
+    function spinWheel() {
+      if (spinning) return;
+      spinning = true;
+      const res = document.getElementById('wheelResult');
+      res.style.display = 'none';
+      const randIdx = Math.floor(Math.random() * sectors.length);
+      const anglePer = 360 / sectors.length;
+      const target = (sectors.length - randIdx) * anglePer - (anglePer / 2);
+      const totalRot = currentRot + 1800 + target - (currentRot % 360);
+      currentRot = totalRot;
+      document.getElementById('wheelCanvas').style.transform = `rotate(${totalRot}deg)`;
+      setTimeout(() => {
+        spinning = false;
+        res.innerText = "Виграш: " + sectors[randIdx].label;
+        res.style.display = 'block';
+      }, 5000);
+    }
+    window.onload = drawWheel;
+  </script>
+</body>
+</html>
